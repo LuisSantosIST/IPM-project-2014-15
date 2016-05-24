@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel = "stylesheet" type = "text/css" href = "layout.css"/>
+		<link rel = "stylesheet" type = "text/css" href = "menusNormais.css"/>
+		<style>
+		#submenu3
+		{
+			text-align: center;
+			height: 1.15cm;
+		}
+		</style>
+		<meta charset="utf-8">
+	</head>
+<body onload="startTime(), changeLed()">
+	<div id="titulo">Group 30 iRave Prototype</div>
+
+	<div id = "irave">
+		<div id = "piscaPisca"></div>
+		<div id = "ecran">
+
+			<div id = "header">
+				<div id = "leftcorner">
+					<span id ="nome">Mario Jorge</span>
+				</div>
+
+				<div id = "horas">
+				</div>
+			</div>
+
+			<div class = "submenu" id ="submenu1" >
+					<img class="image" id="imagem1" src="plus.png" height = "100%">
+					<span id ="shit1">&nbsp;Add favorites</span>
+					<div class ="arrow" id = "arrow1" style="visibility:hidden;"> > </div>
+			</div>
+
+			<div class = "submenu" id ="submenu2" >
+					<img class="image" src="gpsArrow1.png" height = "100%">
+					<span>&nbsp;Get Location</span> 
+					<div class ="arrow" id = "arrow2" style="visibility:hidden;"> > </div>
+			</div>
+
+			<div class = "submenu" id ="submenu3">
+					<img src="unknown.png" height = "100%">
+			</div>
+		</div>
+
+		<a id = "up" class = "botaoright" onclick="cliqueParaCima()" href=#> &#8593; </a>
+		<a id = "down" class = "botaoright" onclick="cliqueParaBaixo(1)" href=#> &#8595; </a>
+		<a id = "select" class = "botaoright" onclick="selectButton()" href=#>  > </a>
+		<a id = "return" class = "botaoleft" onmousedown = "press()" onmouseup = "decision1()" href=#> < </a>
+	</div>
+
+	<img id = "bracer" src="ricardonilas.jpg" alt="lock">
+	<div id = "footer">
+				Copyright &copy; 2015 Ricardo Rei, Luis Nunes, Luis Santos, Leonor Clemente
+	</div>
+	<script type="text/javascript" src="menuJS.js"></script>
+	<script>
+		var contact = Number(sessionStorage.contact);
+
+		if (contact == 1)
+			document.getElementById("nome").innerHTML = "Leonor C.";
+
+		else if (contact == 2)
+			document.getElementById("nome").innerHTML = "Luis Santos";		
+
+		if (Number(sessionStorage.person[contact-1]) == 1)
+		{
+			document.getElementById("imagem1").src = "star.png";
+			document.getElementById("shit1").innerHTML = "&nbsp;Remove";
+		}
+
+		function selectButton()
+		{
+			sessionStorage.returning = 0;
+			if (states[count].id == "submenu1")
+			{
+				if (Number(sessionStorage.person[contact-1]) == 1)
+				sessionStorage.person = sessionStorage.person.substring(0, contact-1) + '0' + sessionStorage.person.substring(contact);
+				else
+				sessionStorage.person = sessionStorage.person.substring(0, contact-1) + '1' + sessionStorage.person.substring(contact);
+
+				if (sessionStorage.forc == 1)
+				{
+					sessionStorage.returns = sessionStorage.returns.substring(0, sessionStorage.returns.length-1);
+					sessionStorage.returns += 0; 
+				}
+			window.location.href = "contact.html";
+			}
+			else if (states[count].id == "submenu2")
+			{
+				sessionStorage.returns += 1;
+				window.location.href = "request.html";
+			}
+		}
+
+		var start, end;
+
+		function press1()
+		{
+			start = new Date();
+		}
+		
+		function decision1()
+		{
+			sessionStorage.returning = 1;
+			end = new Date();
+			var diff = end - start;
+			
+			if(diff > 750)
+			{
+				sessionStorage.returning = 0;
+				sessionStorage.returns = "";
+				window.location.href = "MenuPrincipal.html";
+			}
+			
+			else if (sessionStorage.forc == 1)
+			{
+				window.location.href = "favorites.html";
+			}
+			else 
+				window.location.href = "contacts.html";
+
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel = "stylesheet" type = "text/css" href = "layout.css"/>
+		<link rel = "stylesheet" type = "text/css" href = "menusNormais.css"/>
+		<style>
+		#submenu1
+		{
+			text-align: center;
+			padding-top: 0.08cm;
+			height: 1.07cm;
+			font-size: 0.25cm;
+		}
+		#arrow1
+		{
+			position: absolute;
+			top: 0.2cm; right: 1.20cm;
+			font-size: 0.55cm;
+			padding-top: 0.34cm;
+		}
+		#cancelPop{
+			height: 2.0cm;
+			width: 2.49cm;
+			box-shadow:5px 5px 5px #444; 
+			border-radius: 5px;
+			font-size: 0.3cm;
+			padding-top: 0.2cm
+		}
+		</style>
+		<meta charset="utf-8">
+	</head>
+<body onload="startTime(), changeLed()">
+	<div id="titulo">Group 30 iRave Prototype</div>
+
+	<div id = "irave">
+		<div id = "piscaPisca"></div>
+		<div id = "ecran">
+
+			<div id = "header">
+				<div id = "leftcorner">
+					<span>Cancel</span>
+				</div>
+
+				<div id = "horas">
+				</div>
+			</div>
+
+			<div class = "submenu" id ="submenu1" >
+					<span>&nbsp;Do you want to cancel this search?</span>
+					<div class ="arrow" id = "arrow1" style="visibility:hidden;"> &#65516; </div>
+			</div>
+
+			<div class = "submenu" id ="submenu2">
+					<img class="image" src="info.png" height = "90%">
+					<span>&nbsp;More info</span>
+					<div class ="arrow" id = "arrow2" style="visibility:hidden;"> > </div>
+			</div>
+
+			<div class = "submenu" id ="submenu3">
+					<span>&nbsp;Yes, cancel search</span>
+					<div class ="arrow" id = "arrow3" style="visibility:hidden;"> </div>
+			</div>
+			
+			<div id="hoverpopup" style="visibility:hidden; position:absolute; top:0; left:0;">
+				<div id="cancelPop" style="background-color:rgba(192, 192, 192, 0.9)">
+						<font color="#000000">If you cancel it you will need to send other request in order to find this person again</font>
+				</div>
+			</div>
+		</div>
+
+		<a id = "up" class = "botaoright" onclick="cliqueParaCima()" href=#> &#8593; </a>
+		<a id = "down" class = "botaoright" onclick="cliqueParaBaixo(2)" href=#> &#8595; </a>
+		<a id = "select" class = "botaoright" onclick="selectButton()" href=#>  > </a>
+		<a id = "return" class = "botaoleft" onmousedown = "press1()" onmouseup = "decision('gpssearch.html')" href=#> < </a>
+	</div>
+
+	<img id = "bracer" src="ricardonilas.jpg" alt="lock">
+	<div id = "footer">
+				Copyright &copy; 2015 Ricardo Rei, Luis Nunes, Luis Santos, Leonor Clemente
+	</div>
+	<script type="text/javascript" src="menuJS.js"></script>
+	<script>
+		
+		function selectButton()
+		{
+			if (states[count].id == "submenu2")
+			{
+				ShowPopup('2%','15%');
+			}
+			else if (states[count].id == "submenu3")
+			{
+				if(Number(sessionStorage.gpsreturn) == 8)
+				{
+					sessionStorage.newNot = 0;
+				}
+				sessionStorage.returns = "";
+				window.location.href = "MenuPrincipal.html";
+			}
+		}	
+		
+		var start1, end1;
+
+		function press1()
+		{
+			start1 = new Date();
+		}
+		
+		function decision1()
+		{
+			end1 = new Date();
+			var diff = end1 - start1;
+			
+			sessionStorage.returning = 1;
+			if(diff > 750)
+			{	
+				sessionStorage.returning = 0;
+				sessionStorage.returns = "";
+				window.location.href = "MenuPrincipal.html";
+			}
+			else
+			{
+				sessionStorage.returns = "";
+				window.location.href = "gpssearch.html";
+			}
+		}
+		
+		function ShowPopup(x,y)
+		{
+			var hp = document.getElementById("hoverpopup");
+			hp.style.top = y;
+			hp.style.left = x;
+			hp.style.visibility = "Visible";
+				
+			setTimeout(function() {HidePopup()}, 5000);
+		}
+
+		function HidePopup()
+		{
+			hp = document.getElementById("hoverpopup");
+			hp.style.visibility = "Hidden";
+		}
+	</script>
+</body>
+</html>

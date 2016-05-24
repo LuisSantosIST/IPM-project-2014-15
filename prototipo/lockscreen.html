@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel = "stylesheet" type = "text/css" href = "irave/lockscreen.css"/>
+		<meta charset="utf-8">
+	</head>
+<body onload="startTime(), changeLed()">
+<div id="titulo">Group 30 iRave Prototype</div>
+
+<div id = "irave">
+		<div id = "piscaPisca"></div>
+		<div id = "ecran">
+			<div id = "horas"></div>
+
+			<div id = "lock">
+				<img src="irave/lock_screen.png" alt="lock" width = "70%" height = "70%">
+			</div>
+
+			<div id="hoverpopup" style="visibility:hidden; position:absolute; top:0; left:0;">
+				<table id="tb" style="background-color:rgba(255, 255, 255, 0.8)">
+					<tr>
+						<td><font color="#000000"><p class="parag">Double click</p><p class="parag">to unlock -></p></font></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<a id = "up" class = "botaoright"  onclick="ShowPopup('22%','54%');" href=#> &#8593; </a>
+		<a id = "down" class = "botaoright" onclick="ShowPopup('22%','54%');" href=#> &#8595; </a>
+		<a id = "select" class = "botaoright" ondblclick="changeHref()" onclick="ShowPopup('22%','54%');" href=#>  > </a>
+		<a id = "return" class = "botaoleft" onclick="ShowPopup('22%','54%');" href=#> < </a>
+</div>
+
+<img id = "bracer" src="irave/ricardonilas.jpg" alt="lock">
+
+<div id = "footer">
+				Copyright &copy; 2015 Ricardo Rei, Luis Nunes, Luis Santos, Leonor Clemente
+</div>
+<script type="text/javascript" src="irave/menuJS.js"></script>
+<script>
+	function ShowPopup(x,y)
+	{
+		var hp = document.getElementById("hoverpopup");
+		hp.style.top = y;
+		hp.style.left = x;
+		hp.style.visibility = "Visible";
+			
+		setTimeout(function() {HidePopup()}, 2000);
+	}
+
+	function HidePopup()
+	{
+		hp = document.getElementById("hoverpopup");
+		hp.style.visibility = "Hidden";
+	}
+
+	function changeHref()
+	{
+		window.location.href = "irave/MenuPrincipal.html";
+	}
+</script>
+</body>
+</html>

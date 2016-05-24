@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel = "stylesheet" type = "text/css" href = "layout.css"/>
+		<link rel = "stylesheet" type = "text/css" href = "menusNormais.css"/>
+		<meta charset="utf-8">
+	</head>
+<body onload="startTime(), changeLed()">
+	<div id="titulo">Group 30 iRave Prototype</div>
+
+	<div id = "irave">
+		<div id = "piscaPisca"></div>
+		<div id = "ecran">
+
+			<div id = "header">
+				<div id = "leftcorner">
+					<span>Nearest</span>
+				</div>
+
+				<div id = "horas">
+				</div>
+			</div>
+
+			<div class = "submenu" id ="submenu1" >
+					<img class="image" src="drinks.png" height = "100%">
+					<span>&nbsp;Drinks</span>
+					<div class ="arrow" id = "arrow1" style="visibility:hidden;"> > </div>
+			</div>
+
+			<div class = "submenu" id ="submenu2">
+					<img class="image" src="food.svg" height = "100%">
+					<span>&nbsp;Food</span> 
+					<div class ="arrow" id = "arrow2" style="visibility:hidden;"> > </div>
+			</div>
+
+			<div class = "submenu" id ="submenu3">
+					<img class="image" src="wc.png" height = "100%">
+					<span>&nbsp;WC<span class = "note" id = "notifications2"></span></span> 
+					<div class ="arrow" id = "arrow3" style="visibility:hidden;"> > </div>
+			</div>
+
+			<div class = "submenu" id ="submenu4" >
+					<span>&nbsp;Others</span>
+					<div class ="arrow" id = "arrow4" style="visibility:hidden;"> > </div>
+			</div>
+		</div>
+
+		<a id = "up" class = "botaoright" onclick="cliqueParaCima()" href=#> &#8593; </a>
+		<a id = "down" class = "botaoright" onclick="cliqueParaBaixo(2)" href=#> &#8595; </a>
+		<a id = "select" class = "botaoright" onclick="selectButton()" href=#>  > </a>
+		<a id = "return" class = "botaoleft" onmousedown = "press()" onmouseup = "decision('findplaces.html')" href=#> < </a>
+	</div>
+
+	<img id = "bracer" src="ricardonilas.jpg" alt="lock">
+	<div id = "footer">
+					Copyright &copy; 2015 Ricardo Rei, Luis Nunes, Luis Santos, Leonor Clemente
+	</div>
+	<script type="text/javascript" src="menuJS.js"></script>
+	<script>
+
+		function selectButton()
+		{
+			if (states[count].id == "submenu1")
+			{
+				window.location.href = "drinks.html";
+			}
+			else if (states[count].id == "submenu2")
+			{
+				window.location.href = "food.html";
+			}
+			else if (states[count].id == "submenu3")
+			{
+				window.location.href = "decision.html";
+			}
+		}
+	</script>
+</body>
+</html>

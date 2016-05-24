@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel = "stylesheet" type = "text/css" href = "layout.css"/>
+		<style>
+		.submenu
+		{
+			height: 0.56cm;
+			font-size: 0.3cm;
+			font-size: 0.3cm;
+			line-height: 10%;
+			padding-top: 0.2cm;
+		}
+
+		#container
+		{
+			height: 2.28cm;
+		}
+		
+		.ScrollStyle
+		{
+			height: 2.3cm;
+  	  		overflow-x: hidden;
+		}
+		
+		::-webkit-scrollbar{
+			width: 0.1cm;
+		}
+		
+		::-webkit-scrollbar-track
+		{
+			background: white;
+		}
+		
+		::-webkit-scrollbar-thumb
+		{
+			background: #B8B8B8;
+			border-radius: 4px;
+		}
+
+		</style>
+		<meta charset="utf-8">
+	</head>
+<body onload="startTime(), changeLed()">
+	<div id="titulo">Group 30 iRave Prototype</div>
+
+	<div id = "irave">
+		<div id = "piscaPisca"></div>
+		<div id = "ecran" class="ScrollStyle">
+
+			<div id = "header">
+				<div id = "leftcorner">
+					<span>Heineken</span>
+				</div>
+
+				<div id = "horas">
+				</div>
+			</div>
+			<div class="ScrollStyle" id ="container">
+			<div class = "submenu" id ="submenu1" align = "center" >
+					<span id = "band1"></span>
+					<p id = "state1" align = "center"></p>
+			</div>
+			<div class = "submenu" id ="submenu2" align = "center">
+					<span id = "band2"></span>
+					<p id = "state2" align = "center"><p>
+			</div>
+
+			<div class = "submenu" id ="submenu3" align = "center">
+					<span id = "band3"></span>
+					<p id = "state3" align = "center"></p>
+			</div>
+
+			<div class = "submenu" id ="submenu4" align = "center">
+					<span id = "band4"></span>
+					<p id = "state4" align = "center"></p>
+			</div>
+			</div>
+		</div>
+
+		<a id = "up" class = "botaoright" onclick="cliqueCima()" href=#> &#8593; </a>
+		<a id = "down" class = "botaoright" onclick="cliqueBaixo(3)" href=#> &#8595; </a>
+		<a id = "select" class = "botaoright" href=#>  > </a>
+		<a id = "return" class = "botaoleft" onmousedown = "press()" onmouseup = "decision('stageSelect.html')" href=#> < </a>
+	</div>
+	<img id = "bracer" src="ricardonilas.jpg" alt="lock">
+	<div id = "footer">
+				Copyright &copy; 2015 Ricardo Rei, Luis Nunes, Luis Santos, Leonor Clemente
+	</div>
+	<script type="text/javascript" src="menuJS.js"></script>
+	<script>
+
+		var day = Number(sessionStorage.day);
+		var count = 0;
+
+		states[count].style.backgroundColor = "rgba(50,168,221, 0.8)";
+		states[count].style.color = "white";
+		states[count].style.borderColor = "black";
+
+		if (day == 2) 
+		{
+			document.getElementById("band1").innerHTML = "Dead Combo";
+			document.getElementById("state1").innerHTML = "- 19:00 -";
+			document.getElementById("band2").innerHTML = "Jessie Ware";
+			document.getElementById("state2").innerHTML = "- 20:30 -";
+			document.getElementById("band3").innerHTML = "Zero 7";
+			document.getElementById("state3").innerHTML = "- 22:30 -";
+			document.getElementById("band4").innerHTML = "Tricky";
+			document.getElementById("state4").innerHTML = "- 00:00 -";
+		}
+		else if (day == 1)
+		{
+			document.getElementById("band1").innerHTML = "Portishead";
+			document.getElementById("state1").innerHTML = "- Ended -";
+			document.getElementById("band2").innerHTML = "Morcheeba";
+			document.getElementById("state2").innerHTML = "- Ended -";
+			document.getElementById("band3").innerHTML = "Glass Animals";
+			document.getElementById("state3").innerHTML = "- Ended -";
+			document.getElementById("band4").innerHTML = "Moby";
+			document.getElementById("state4").innerHTML = "- Ended -";
+		}
+		else
+		{
+			document.getElementById("band1").innerHTML = "Telepopmusik";
+			document.getElementById("state1").innerHTML = "- 18:30 -";
+			document.getElementById("band2").innerHTML = "Hooverphonic";
+			document.getElementById("state2").innerHTML = "- 20:00 -";
+			document.getElementById("band3").innerHTML = "Massive Attack";
+			document.getElementById("state3").innerHTML = "- 21:15 -";
+			document.getElementById("band4").innerHTML = "Bonobo";
+			document.getElementById("state4").innerHTML = "- 23:00 -";
+		}
+
+		function cliqueBaixo(nr)
+		{
+			if (count < nr)
+			{
+
+				states[count].style.backgroundColor = "white";
+				states[count].style.color = "black";
+
+				count++;
+				if (count == 3)
+				{
+					document.getElementById("container").scrollTop = document.getElementById("container").scrollHeight;
+				}
+				states[count].style.color = "white";
+				states[count].style.borderColor = "black";
+				states[count].style.backgroundColor = "rgba(50,168,221, 0.8)";
+
+			}
+		}
+
+		function cliqueCima()
+		{
+			if (count > 0)
+			{
+				states[count].style.backgroundColor = "white";
+				states[count].style.color = "black";
+				count--;
+				if (count == 0)
+				{
+					document.getElementById("container").scrollTop = 0;
+				}
+				states[count].style.backgroundColor = "rgba(50,168,221, 0.8)";
+				states[count].style.color = "white";
+				states[count].style.borderColor = "black";
+			}
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel = "stylesheet" type = "text/css" href = "layout.css"/>
+		<style>
+		.submenu
+		{
+			height: 0.56cm;
+			font-size: 0.3cm;
+			font-size: 0.3cm;
+			line-height: 10%;
+			padding-top: 0.2cm;
+		}
+
+		#container
+		{
+			height: 2.28cm;
+		}
+		
+		.ScrollStyle
+		{
+			height: 2.3cm;
+  	  		overflow-x: hidden;
+		}
+		
+		::-webkit-scrollbar{
+			width: 0.1cm;
+		}
+		
+		::-webkit-scrollbar-track
+		{
+			background: white;
+		}
+		
+		::-webkit-scrollbar-thumb
+		{
+			background: #B8B8B8;
+			border-radius: 4px;
+		}
+		
+		::-webkit-scrollbar-button:end:increment  {
+			height: 0.03cm;
+		}
+
+		</style>
+		<meta charset="utf-8">
+	</head>
+<body onload="startTime(), changeLed()">
+	<div id="titulo">Group 30 iRave Prototype</div>
+
+	<div id = "irave">
+		<div id = "piscaPisca"></div>
+		<div id = "ecran" class="ScrollStyle">
+
+			<div id = "header">
+				<div id = "leftcorner">
+					<span>Clubbing</span>
+				</div>
+
+				<div id = "horas">
+				</div>
+			</div>
+			<div class="ScrollStyle" id ="container">
+			<div class = "submenu" id ="submenu1" align = "center" >
+					<span id = "band1"></span>
+					<p id = "state1" align = "center"></p>
+			</div>
+			<div class = "submenu" id ="submenu2" align = "center">
+					<span id = "band2"></span>
+					<p id = "state2" align = "center"><p>
+			</div>
+
+			<div class = "submenu" id ="submenu3" align = "center">
+					<span id = "band3"></span>
+					<p id = "state3" align = "center"></p>
+			</div>
+			</div>
+		</div>
+
+		<a id = "up" class = "botaoright" onclick="cliqueCima()" href=#> &#8593; </a>
+		<a id = "down" class = "botaoright" onclick="cliqueBaixo(2)" href=#> &#8595; </a>
+		<a id = "select" class = "botaoright" href=#>  > </a>
+		<a id = "return" class = "botaoleft" onmousedown = "press()" onmouseup = "decision('stageSelect.html')" href=#> < </a>
+	</div>
+	<img id = "bracer" src="ricardonilas.jpg" alt="lock">
+	<div id = "footer">
+				Copyright &copy; 2015 Ricardo Rei, Luis Nunes, Luis Santos, Leonor Clemente
+	</div>
+	<script type="text/javascript" src="menuJS.js"></script>
+	<script>
+
+		var day = Number(sessionStorage.day);
+		var count = 0;
+
+		states[count].style.backgroundColor = "rgba(50,168,221, 0.8)";
+		states[count].style.color = "white";
+		states[count].style.borderColor = "black";
+
+		if (day == 2) 
+		{
+			document.getElementById("band1").innerHTML = "Tiga";
+			document.getElementById("state1").innerHTML = "- 20:30 -";
+			document.getElementById("band2").innerHTML = "Ten Walls";
+			document.getElementById("state2").innerHTML = "- 23:00 -";
+			document.getElementById("band3").innerHTML = "Julio Bashmore";
+			document.getElementById("state3").innerHTML = "- 00:50 -";
+		}
+		else if (day == 1)
+		{
+			document.getElementById("band1").innerHTML = "Batida";
+			document.getElementById("state1").innerHTML = "- Ended -";
+			document.getElementById("band2").innerHTML = "Moullinex";
+			document.getElementById("state2").innerHTML = "- Ended -";
+			document.getElementById("band3").innerHTML = "High Contrast";
+			document.getElementById("state3").innerHTML = "- Ended -";
+		}
+		else
+		{
+			document.getElementById("band1").innerHTML = "Gotan Project";
+			document.getElementById("state1").innerHTML = "- 21:00 -";
+			document.getElementById("band2").innerHTML = "Romare";
+			document.getElementById("state2").innerHTML = "- 23:00 -";
+			document.getElementById("band3").innerHTML = "Woodkid";
+			document.getElementById("state3").innerHTML = "- 01:00 -";
+		}
+
+		function cliqueBaixo(nr)
+		{
+			if (count < nr)
+			{
+
+				states[count].style.backgroundColor = "white";
+				states[count].style.color = "black";
+
+				count++;
+				if (count == 3)
+				{
+					document.getElementById("container").scrollTop = document.getElementById("container").scrollHeight;
+				}
+				states[count].style.color = "white";
+				states[count].style.borderColor = "black";
+				states[count].style.backgroundColor = "rgba(50,168,221, 0.8)";
+
+			}
+		}
+
+		function cliqueCima()
+		{
+			if (count > 0)
+			{
+				states[count].style.backgroundColor = "white";
+				states[count].style.color = "black";
+				count--;
+				if (count == 0)
+				{
+					document.getElementById("container").scrollTop = 0;
+				}
+				states[count].style.backgroundColor = "rgba(50,168,221, 0.8)";
+				states[count].style.color = "white";
+				states[count].style.borderColor = "black";
+			}
+		}
+	</script>
+</body>
+</html>

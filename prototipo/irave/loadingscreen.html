@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel = "stylesheet" type = "text/css" href = "lockscreen.css"/>
+		<meta charset="utf-8">
+	</head>
+<body onload="startTime(), changeLed()">
+	<div id="titulo">Group 30 iRave Prototype</div>
+
+	<div id = "irave">
+		<div id = "piscaPisca"></div>
+		<div id = "ecran" text-allign="center">
+			<div id = "gif">
+				<img src="468.GIF" alt="lock" width = "50%" height = "50%">
+				<p></p>
+			</div>
+			<center><strong>getting location...</strong></center>
+		</div>
+
+		<a id = "up" class = "botaoright" href=#> &#8593; </a>
+		<a id = "down" class = "botaoright" href=#> &#8595; </a>
+		<a id = "select" class = "botaoright" href=#>  > </a>
+		<a id = "return" class = "botaoleft" href=#> < </a>
+</div>
+
+<img id = "bracer" src="ricardonilas.jpg" alt="lock">
+<div id = "footer">
+				Copyright &copy; 2015 Ricardo Rei, Luis Nunes, Luis Santos, Leonor Clemente
+</div>
+<script>
+
+	document.getElementById("ecran").style.fontSize = "0.3cm";
+	setInterval(function () {loadNext()}, 3000);
+
+	function loadNext()
+	{
+		window.location.href = "gpssearch.html";
+	}
+	
+	
+</script>
+</body>
+</html>

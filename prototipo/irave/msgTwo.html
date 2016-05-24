@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel = "stylesheet" type = "text/css" href = "message1.css"/>
+		<link rel = "stylesheet" type = "text/css" href = "layout.css"/>
+
+		<style>
+			#submenu1
+			{
+				height: 1.555cm;
+			}
+			p
+			{
+				font-size: 0.3cm;
+				margin: 0;
+				text-align: center;
+			}
+			#arrow1
+			{
+				position: absolute;
+				top: 0.92cm; right: 1.20cm;
+				font-size: 0.6cm;
+			}
+		</style>
+
+		<meta charset="utf-8">
+	</head>
+<body onload="startTime(), changeLed()">
+	<div id="titulo">Group 30 iRave Prototype</div>
+
+	<div id = "irave">
+		<div id = "piscaPisca"></div>
+		<div id = "ecran">
+
+			<div id = "header">
+				<div id = "leftcorner">
+					<span>Organization</span>
+				</div>
+
+				<div id = "horas">
+				</div>
+			</div>
+
+			<div class = "submenu" id ="submenu1" >
+					<p>Muse has been </p>
+					<p>delayed from 22:00</p>
+					<p>to 22:30</p>
+					<div class="arrow" id = "arrow1" style="visibility:hidden;"> &#65516; </div>
+			</div>
+			<div class = "submenu" id ="submenu2" >
+					<span>&nbsp;Go to Line Up</span>
+					<div class ="arrow" id = "arrow2" style="visibility:hidden;"> > </div>
+			</div>
+		</div>
+
+		<a id = "up" class = "botaoright" onclick="cliqueParaCima()" href=#> &#8593; </a>
+		<a id = "down" class = "botaoright" onclick="cliqueParaBaixo(1)" href=#> &#8595; </a>
+		<a id = "select" class = "botaoright" onclick="selectButton()" href=#>  > </a>
+		<a id = "return" class = "botaoleft" onmousedown = "press()" onmouseup = "decision('inbox.html')" href=#> < </a>
+	</div>
+
+	<img id = "bracer" src="ricardonilas.jpg" alt="lock">
+	<div id = "footer">
+				Copyright &copy; 2015 Ricardo Rei, Luis Nunes, Luis Santos, Leonor Clemente
+	</div>
+	<script type="text/javascript" src="menuJS.js"></script>
+	<script>
+
+
+		function selectButton()
+		{
+			sessionStorage.returning = 1;
+			if (states[count].id == "submenu2")
+			{
+				sessionStorage.returns = "3202";
+				sessionStorage.notelineup = 1;
+				sessionStorage.day = 2;
+				window.location.href = "stageNos.html";
+			}
+		}
+
+	</script>
+</body>
+</html>

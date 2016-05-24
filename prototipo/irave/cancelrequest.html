@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel = "stylesheet" type = "text/css" href = "layout.css"/>
+		<link rel = "stylesheet" type = "text/css" href = "menusNormais.css"/>
+		<style>
+		#submenu1
+		{
+			text-align: center;
+			height: 1.15cm;
+			line-height: 110%;
+			font-size: 0.25cm;
+		}
+		#arrow1
+		{
+			position: absolute;
+			top: 0.48cm; right: 1.20cm;
+			font-size: 0.55cm;
+			padding-top: 0.34cm;
+		}
+		
+		</style>
+		<meta charset="utf-8">
+	</head>
+<body onload="startTime(), changeLed()">
+	<div id="titulo">Group 30 iRave Prototype</div>
+
+	<div id = "irave">
+		<div id = "piscaPisca"></div>
+		<div id = "ecran">
+
+			<div id = "header">
+				<div id = "leftcorner">
+					<span>Request</span>
+				</div>
+
+				<div id = "horas">
+				</div>
+			</div>
+
+			<div class = "submenu" id ="submenu1" >
+					<span>&nbsp;Do you want to cancel the location request?</span>
+					<div class ="arrow" id = "arrow1" style="visibility:hidden;"> &#65516; </div>
+			</div>
+
+			<div class = "submenu" id ="submenu2">
+					<span>&nbsp;No</span>
+					<div class ="arrow" id = "arrow2" style="visibility:hidden;"> > </div>
+			</div>
+
+			<div class = "submenu" id ="submenu3">
+					<span>&nbsp;Yes</span>
+					<div class ="arrow" id = "arrow3" style="visibility:hidden;"> > </div>
+			</div>
+		</div>
+
+		<a id = "up" class = "botaoright" onclick="cliqueParaCima()" href=#> &#8593; </a>
+		<a id = "down" class = "botaoright" onclick="cliqueParaBaixo(2)" href=#> &#8595; </a>
+		<a id = "select" class = "botaoright" onclick="selectButton()" href=#>  > </a>
+		<a id = "return" class = "botaoleft" onmousedown = "press1()" onmouseup = "decision('request.html')" href=#> < </a>
+	</div>
+
+	<img id = "bracer" src="ricardonilas.jpg" alt="lock">
+	<div id = "footer">
+				Copyright &copy; 2015 Ricardo Rei, Luis Nunes, Luis Santos, Leonor Clemente
+	</div>
+	<script type="text/javascript" src="menuJS.js"></script>
+	<script>
+
+
+		function selectButton()
+		{
+			if (states[count].id == "submenu2")	
+			{
+				sessionStorage.returning = 1;
+				sessionStorage.returns = sessionStorage.returns.substring(0, sessionStorage.returns.length-1) + 0;
+				window.location.href = "request.html";
+			}	
+			else if (states[count].id == "submenu3")
+			{
+				sessionStorage.newNot = 0;
+				sessionStorage.inbox --;
+				sessionStorage.returns = sessionStorage.returns.substring(0, sessionStorage.returns.length-2);
+				window.location.href = "contact.html";
+			}			
+		}		
+		
+	</script>
+</body>
+</html>

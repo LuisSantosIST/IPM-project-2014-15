@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel = "stylesheet" type = "text/css" href = "layout.css"/>
+		<link rel = "stylesheet" type = "text/css" href = "menusNormais.css"/>
+		<style>
+		p
+		{
+			font-size: 0.275cm;
+			margin: 0;
+		}
+		#submenu1
+		{
+			height: 1.15cm;
+			text-align: center;
+		}
+		#arrow1
+		{
+			font-size: 0.4cm;
+			top: 0.65cm; right: 1.19cm;
+		}
+
+		</style>
+		<meta charset="utf-8">
+	</head>
+<body onload="startTime(), changeLed()">
+	<div id="titulo">Group 30 iRave Prototype</div>
+
+	<div id = "irave">
+		<div id = "piscaPisca"></div>
+		<div id = "ecran">
+
+			<div id = "header">
+				<div id = "leftcorner">
+					<span>Request</span>
+				</div>
+
+				<div id = "horas">
+				</div>
+			</div>
+
+			<div class = "submenu" id ="submenu1" >
+					<p class="parag"><strong>You will get a mensage when your request is accepted!</strong></p>
+					<div class="arrow" id = "arrow1" style="visibility:hidden;">&#65516;</div>
+			</div>
+
+			<div class = "submenu" id ="submenu2">
+					<img class="image" src="inbox.png" height = "100%">
+					<span>&nbsp;Check Inbox</span> 
+					<div class ="arrow" id = "arrow2" style="visibility:hidden;"> > </div>
+			</div>
+
+			<div class = "submenu" id ="submenu3">
+					<img class="image" src="cancel.png" height = "100%">
+					<span>&nbsp;Cancel</span> 
+					<div class ="arrow" id = "arrow3" style="visibility:hidden;"> > </div>
+			</div>
+		</div>
+
+		<a id = "up" class = "botaoright" onclick="cliqueParaCima()" href=#> &#8593; </a>
+		<a id = "down" class = "botaoright" onclick="cliqueParaBaixo(2)" href=#> &#8595; </a>
+		<a id = "select" class = "botaoright" onclick="selectButton()" href=#>  > </a>
+		<a id = "return" class = "botaoleft" onmousedown = "press()" onmouseup = "decision('contact.html')" href=#> < </a>
+	</div>
+
+	<img id = "bracer" src="ricardonilas.jpg" alt="lock">
+	<div id = "footer">
+				Copyright &copy; 2015 Ricardo Rei, Luis Nunes, Luis Santos, Leonor Clemente
+	</div>
+	<script type="text/javascript" src="menuJS.js"></script>
+	<script>
+		if(sessionStorage.newNot == 0)
+		{
+			sessionStorage.inboxShit = 1;
+			sessionStorage.newNot = 1;
+			sessionStorage.inbox ++;
+		}
+
+		var clearIn = Number(sessionStorage.clearIn);
+		function selectButton()
+		{
+			if (states[count].id == "submenu2")
+			{
+				if(clearIn == 1)
+				{
+					sessionStorage.returns = 0;
+					window.location.href = "inboxOne.html";
+				}
+				else
+				{
+					sessionStorage.returns = 0;
+					window.location.href = "inbox.html";
+				}
+			}
+			else if (states[count].id == "submenu3")
+			{
+				sessionStorage.returns += 1;
+				window.location.href = "cancelrequest.html";
+			}
+		}
+	</script>
+</body>
+</html>

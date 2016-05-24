@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+	
+<head>
+	<link rel = "stylesheet" type = "text/css" href = "Gps.css"/>
+	<meta charset="utf-8">
+</head>
+	
+<body onload="startTime(), changeLed(), init()">
+	<div id="titulo">Group 30 iRave Prototype</div>
+
+	<div id = "irave">
+		<div id = "piscaPisca"></div>
+		<div id = "ecran">
+
+			<div id = "header">
+				<div id = "leftcorner">
+					<span id = "wut"></span>
+				</div>
+
+				<div id = "horas">
+				</div>
+			</div>
+
+			<div class = "submenu" id ="distNgps">
+					<div id="hoverpopup" style="visibility:hidden; position:absolute; top:0; left:0;">
+						<table id="tb" style="background-color:rgba(255, 255, 255, 0.8)">
+							<tr>
+								<td><font color="#000000"><p class="parag">Destination reached</p></font></td>
+							</tr>
+						</table>
+					</div>
+					<canvas id="canvs" width="100" height="45"></canvas>
+					<div id="distLeft"></div>
+			</div>
+
+			<div class = "submenu" id ="submenu1">
+					<span>&nbsp;Cancel Search<span class = "note" id = "notifications1"></span></span>
+					<div class ="arrow" id = "arrow1" style="visibility:hidden;"> > </div>
+			</div>
+		</div>
+
+		<a id = "up" class = "botaoright" onclick="cliqueParaCima()" href=#> &#8593; </a>
+		<a id = "down" class = "botaoright" onclick="cliqueParaBaixo(0)" href=#> &#8595; </a>
+		<a id = "select" class = "botaoright" onclick="selectButton()" href=#>  > </a>
+		<a id = "return" class = "botaoleft" onmousedown = "press1()" onmouseup = "decision1()" href=#> < </a>
+		
+		
+	</div>
+	
+	<img id = "bracer" src="ricardonilas.jpg" alt="lock">
+	<div id = "footer">
+				Copyright &copy; 2015 Ricardo Rei, Luis Nunes, Luis Santos, Leonor Clemente
+	</div>
+	<script type="text/javascript" src="menuJS.js"></script>
+	<script type="text/javascript" src="compass.js"></script>
+	<script>
+	
+	if(Number(sessionStorage.gpsreturn) == 1)
+	{
+		document.getElementById("wut").innerHTML = "João Dias";
+	}
+	else if(Number(sessionStorage.gpsreturn) == 8)
+	{
+		document.getElementById("wut").innerHTML = "Leonor Clemente";
+	}
+	else
+	{
+		document.getElementById("wut").innerHTML = "Places";
+	}
+	
+	function selectButton()
+	{
+		if(Number(sessionStorage.gpsreturn) == 1||8)
+		{
+			sessionStorage.returns += 0;
+			window.location.href = "cancelMsg.html";
+		}
+		else
+		{
+			window.location.href = "places.html";
+		}
+	}
+
+	var start1, end1;
+
+	function press1()
+	{
+		start1 = new Date();
+	}
+	
+	function decision1()
+	{
+		end1 = new Date();
+		var diff = end1 - start1;
+		
+		sessionStorage.returning = 1;
+		if(diff > 750)
+		{	
+			sessionStorage.returning = 0;
+			sessionStorage.returns = "";
+			window.location.href = "MenuPrincipal.html";
+		}
+		else if(Number(sessionStorage.gpsreturn) == 1)
+		{
+			window.location.href = "accept.html";
+		}
+		else if(Number(sessionStorage.gpsreturn) == 2)
+		{
+			window.location.href = "drinksavoidqueue.html";
+		}
+		else if(Number(sessionStorage.gpsreturn) == 3)
+		{
+			window.location.href = "foodqueue.html";
+		}
+		else if(Number(sessionStorage.gpsreturn) == 4)
+		{
+			window.location.href = "wcqueue.html";
+		}
+		else if(Number(sessionStorage.gpsreturn) == 5)
+		{
+			window.location.href = "drinks.html";
+		}
+		else if(Number(sessionStorage.gpsreturn) == 6)
+		{
+			window.location.href = "food.html";
+		}
+		else if(Number(sessionStorage.gpsreturn) == 7)
+		{
+			window.location.href = "findstage.html";
+		}
+		else if(Number(sessionStorage.gpsreturn) == 8)
+		{
+			if(sessionStorage.newNot == 0)
+			{
+				sessionStorage.returns = "";
+				window.location.href = "MenuPrincipal.html";
+			}
+			else
+			{
+				window.location.href = "msgThree.html";
+			}
+		}
+	}
+</script>
+
+</body>
+</html>

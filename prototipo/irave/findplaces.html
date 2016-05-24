@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel = "stylesheet" type = "text/css" href = "layout.css"/>
+		<link rel = "stylesheet" type = "text/css" href = "menusNormais.css"/>
+		<style>
+		#submenu3
+		{
+			text-align: center;
+			height: 1.15cm;
+			padding-top: 0;
+		}
+		</style>
+		<meta charset="utf-8">
+	</head>
+<body onload="startTime(), changeLed()">
+	<div id="titulo">Group 30 iRave Prototype</div>
+
+	<div id = "irave">
+		<div id = "piscaPisca"></div>
+		<div id = "ecran">
+
+			<div id = "header">
+				<div id = "leftcorner">
+					<span>Search Type</span>
+				</div>
+
+				<div id = "horas">
+				</div>
+			</div>
+
+			<div class = "submenu" id ="submenu1" >
+					<span>&nbsp;Avoid Queue</span>
+					<div class ="arrow" id = "arrow1" style="visibility:hidden;"> > </div>
+			</div>
+
+			<div class = "submenu" id ="submenu2">
+					<span>&nbsp;Nearest</span> 
+					<div class ="arrow" id = "arrow2" style="visibility:hidden;"> > </div>
+			</div>
+
+			<div class = "submenu" id ="submenu3">
+					<img id="image1" src="restaurant.jpg" height = "100%">
+			</div>
+		</div>
+
+		<a id = "up" class = "botaoright" onclick="cliqueParaCima()" href=#> &#8593; </a>
+		<a id = "down" class = "botaoright" onclick="cliqueParaBaixo(1)" href=#> &#8595; </a>
+		<a id = "select" class = "botaoright" onclick="selectButton()" href=#>  > </a>
+		<a id = "return" class = "botaoleft" onmousedown = "press()" onmouseup = "decision('places.html')" href=#> < </a>
+	</div>
+
+	<img id = "bracer" src="ricardonilas.jpg" alt="lock">
+	<div id = "footer">
+				Copyright &copy; 2015 Ricardo Rei, Luis Nunes, Luis Santos, Leonor Clemente
+	</div>
+	<script type="text/javascript" src="menuJS.js"></script>
+	<script>
+		var drinks = Number(sessionStorage.bar);
+
+		if (drinks == 1)
+		{
+			document.getElementById("image1").src = "bars.png";
+		}
+		else if (drinks == 2)
+		{
+			document.getElementById("image1").src = "restroom.jpg";
+		}
+
+		function selectButton()
+		{
+			if (states[count].id == "submenu1")
+			{
+				sessionStorage.returns += 0;
+				if (drinks == 1)
+					window.location.href = "drinksavoidqueue.html";
+				else if (drinks == 2)
+					window.location.href = "decision.html";
+				else
+					window.location.href = "foodqueue.html";
+			}
+			else if (states[count].id == "submenu2")
+			{
+				sessionStorage.returns += 1;
+				if (drinks == 1)
+					window.location.href = "drinks.html";
+				else if (drinks == 2)
+					window.location.href = "decision.html";
+				else
+					window.location.href = "food.html";
+			}
+		}
+	</script>
+</body>
+</html>

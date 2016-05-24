@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel = "stylesheet" type = "text/css" href = "layout.css"/>
+		<link rel = "stylesheet" type = "text/css" href = "menusNormais.css"/>
+		<style>
+		.submenu
+		{
+			padding-left: 0;
+			width: 2.634cm;
+		}
+
+		.ScrollStyle
+		{
+			height: 2.3cm;
+  	  		overflow-x: hidden;
+		}
+		
+		::-webkit-scrollbar{
+			width: 0.1cm;
+		}
+		
+		::-webkit-scrollbar-track
+		{
+			background: white;
+		}
+		
+		::-webkit-scrollbar-thumb
+		{
+			background: #B8B8B8;
+			border-radius: 4px;
+		}
+		
+		::-webkit-scrollbar-button:end:increment  {
+			height: 0.03cm;
+		}
+		
+		</style>
+		<meta charset="utf-8">
+	</head>
+<body onload="startTime(), changeLed()">
+	<div id="titulo">Group 30 iRave Prototype</div>
+
+	<div id = "irave">
+		<div id = "piscaPisca"></div>
+		<div id = "ecran">
+
+			<div id = "header">
+				<div id = "leftcorner">
+					<span>Artists</span>
+				</div>
+
+				<div id = "horas">
+				</div>
+			</div>
+
+			<div class="ScrollStyle" id ="container">
+			<div class = "submenu" id ="submenu1" >
+					<img class="image" src="deadcombo.jpeg" height = "100%">
+					<span>&nbsp;Dead Combo<span class = "note" id = "notifications1"></span></span>
+					<div class ="arrow" id = "arrow1" style="visibility:hidden;"> > </div>
+			</div>
+
+			<div class = "submenu" id ="submenu2">
+					<img class="image" src="glassanimals.jpg" height = "100%">
+					<span>&nbsp;Glass Animal</span> 
+					<div class ="arrow" id = "arrow2" style="visibility:hidden;"> > </div>
+			</div>
+
+			<div class = "submenu" id ="submenu3">
+					<img class="image" src="jessieware.jpeg" height = "100%">
+					<span>&nbsp;Jessie Ware<span class = "note" id = "notifications2"></span></span> 
+					<div class ="arrow" id = "arrow3" style="visibility:hidden;"> > </div>
+			</div>
+
+			<div class = "submenu" id ="submenu4" >
+					<img class="image" src="moby.jpg" height = "100%">
+					<span>&nbsp;Moby</span>
+					<div class ="arrow" id = "arrow4" style="visibility:hidden;"> > </div>
+			</div>
+
+			<div class = "submenu" id ="submenu5" >
+					<img class="image" src="morcheeba.jpg" height = "100%">
+					<span>&nbsp;Morcheeba</span>
+					<div class ="arrow" id = "arrow5" style="visibility:hidden;"> > </div>
+			</div>
+
+			<div class = "submenu" id ="submenu6" >
+					<img class="image" src="portishead.jpeg" height = "100%">
+					<span>&nbsp;Portishead</span>
+					<div class ="arrow" id = "arrow6" style="visibility:hidden;"> > </div>
+			</div>
+			</div>
+		</div>
+
+		<a id = "up" class = "botaoright" onclick="cliqueCima()" href=#> &#8593; </a>
+		<a id = "down" class = "botaoright" onclick="cliqueBaixo(5)" href=#> &#8595; </a>
+		<a id = "select" class = "botaoright" onclick="selectButton()" href=#>  > </a>
+		<a id = "return" class = "botaoleft" onmousedown = "press()" onmouseup = "decision('lineup.html')" href=#> < </a>
+	</div>
+
+	<img id = "bracer" src="ricardonilas.jpg" alt="lock">
+	<div id = "footer">
+				Copyright &copy; 2015 Ricardo Rei, Luis Nunes, Luis Santos, Leonor Clemente
+	</div>
+	<script>
+		var states = [document.getElementById("submenu1"), document.getElementById("submenu2"), 
+				document.getElementById("submenu3"), document.getElementById("submenu4"), document.getElementById("submenu5"), 
+				document.getElementById("submenu6")];
+
+		var arrows = [document.getElementById("arrow1"), document.getElementById("arrow2"), 
+				document.getElementById("arrow3"), document.getElementById("arrow4"), document.getElementById("arrow5"), 
+				document.getElementById("arrow6")];
+
+		var count = 0;
+		var start, end;
+
+		if(!sessionStorage.band)
+		{
+			sessionStorage.setItem("band", 0);
+		}
+
+		if(Number(sessionStorage.returning) == 1 && sessionStorage.returns != "")
+		{
+			count = Number(sessionStorage.returns[sessionStorage.returns.length - 1]);
+			sessionStorage.returns = sessionStorage.returns.substring(0, sessionStorage.returns.length-1);
+			sessionStorage.returning = 0;
+		}
+
+		states[count].style.backgroundColor = "rgba(50,168,221, 0.8)";
+		arrows[count].style.visibility = "Visible";
+		states[count].style.color = "white";
+		states[count].style.borderColor = "black";
+
+		if (count == 4)
+		{
+			document.getElementById("container").scrollTop += 22;
+		}
+		else if (count == 5)
+		{
+			document.getElementById("container").scrollTop += 44;
+		}
+
+		function selectButton()
+		{
+
+			if (states[count].id == "submenu1")
+			{
+				sessionStorage.returns += 0;
+				sessionStorage.band = 1;
+			}
+			else if (states[count].id == "submenu2")
+			{
+				sessionStorage.returns += 1;
+				sessionStorage.band = 2;
+			}
+			else if (states[count].id == "submenu3")
+			{
+				sessionStorage.returns += 2;
+				sessionStorage.band = 3;
+			}
+			else if (states[count].id == "submenu4")
+			{
+				sessionStorage.returns += 3;
+				sessionStorage.band = 4;
+			}
+			else if (states[count].id == "submenu5")
+			{
+				sessionStorage.returns += 4;
+				sessionStorage.band = 5;
+			}
+			else if (states[count].id == "submenu6")
+			{
+				sessionStorage.returns += 5;
+				sessionStorage.band = 6;
+			}
+
+			window.location.href = "band.html";
+		}
+
+		function cliqueBaixo(nr)
+		{
+			var height = 22;
+			if (count < nr)
+			{
+
+				states[count].style.backgroundColor = "white";
+				states[count].style.color = "black";
+				arrows[count].style.visibility = "Hidden";
+
+				count++;
+				if (count == 4 || count == 5)
+				{
+					document.getElementById("container").scrollTop += height;
+				}
+
+				states[count].style.color = "white";
+				states[count].style.borderColor = "black";
+				states[count].style.backgroundColor = "rgba(50,168,221, 0.8)";
+				arrows[count].style.visibility = "Visible";
+
+			}
+		}
+
+		function cliqueCima()
+		{
+			if (count > 0)
+			{
+				states[count].style.backgroundColor = "white";
+				states[count].style.color = "black";
+				arrows[count].style.visibility = "Hidden";
+
+				count--;
+				if (count == 1)
+				{
+					document.getElementById("container").scrollTop = 22;
+				}
+				else if(count == 0)
+				{
+					document.getElementById("container").scrollTop = 0;
+				}
+				states[count].style.backgroundColor = "rgba(50,168,221, 0.8)";
+				states[count].style.color = "white";
+				states[count].style.borderColor = "black";
+				arrows[count].style.visibility = "Visible";
+			}
+		}
+
+		function startTime() {
+			var today = new Date();
+			var h = today.getHours();
+			var m = today.getMinutes();
+			
+			m = checkTime(m);
+
+			document.getElementById("horas").innerHTML = h+":"+m;
+			var t = setTimeout(function(){startTime()},500);
+		}
+
+		function checkTime(i) {
+			if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
+			return i;
+		}
+
+		function press()
+		{
+			start = new Date();
+		}
+			
+		function decision(menu)
+		{
+			sessionStorage.returning = 1;
+			end = new Date();
+			var diff = end - start;
+
+			if(diff > 750)
+			{
+				sessionStorage.returning = 0;
+				sessionStorage.returns = "";
+				window.location.href = "MenuPrincipal.html";
+			}
+			
+			else
+			{
+				window.location.href = menu;
+			}
+		}
+		
+		function changeLed()
+		{
+			if(sessionStorage.inbox > 0)
+			{
+				setTimeout(function(){changeLed1()},300);
+			}
+					
+		}
+
+		function changeLed1()
+		{
+			document.getElementById("piscaPisca").style.backgroundColor = "red";
+			setTimeout(function(){changeLed2()},500);
+		}
+
+		function changeLed2()
+		{
+			document.getElementById("piscaPisca").style.backgroundColor = "black";
+			setTimeout(function(){changeLed1()},500);
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel = "stylesheet" type = "text/css" href = "layout.css"/>
+		<style>
+		span
+		{
+  			vertical-align: middle;
+		}
+		#arrow2
+		{
+			top: 0.85cm; right: 1.27cm;
+		}
+
+		.submenu
+		{
+			width: 2.694cm;
+			height: 0.575cm;
+			border-right: solid;
+			border-width: 0.04cm;
+			position: relative;
+			text-align: center;
+			padding-left: 0;
+		}
+
+		#submenu8
+		{
+			height: 1.0025cm;
+			/*background-color: rgba(50,168,221, 0.8);
+			border-color: black;*/
+		}
+
+		#submenu9
+		{
+			line-height: 75%;
+			height: 1.3075cm;
+			/*background-color: rgba(50,168,221, 0.8);
+			color: white;
+			border-color: black;*/
+		}
+
+		#image
+		{
+			float: left;
+		}
+
+		#arrow3
+		{
+			position: absolute;
+			top: 0; left: 0;
+			padding-top: 0.09cm;
+			font-size: 0.35cm;
+			text-align: right;
+		}
+		#band
+		{
+			font-weight: bold;
+			font-size: 0.35cm;
+			position: absolute;
+			left: 0.9cm;
+			top: 0.2cm;
+		}
+
+		</style>
+		<meta charset="utf-8">
+	</head>
+<body onload="startTime(), changeLed()">
+	<div id="titulo">Group 30 iRave Prototype</div>
+
+	<div id = "irave">
+		<div id = "piscaPisca"></div>
+		<div id = "ecran">
+
+			<div id = "header">
+				<div id = "leftcorner">
+					<span>Artist</span>
+				</div>
+
+				<div id = "horas">
+				</div>
+			</div>
+
+			<div class = "submenu" id ="submenu8" >
+					<img id="image" src="portishead.jpeg" height = "100%">
+					<span id = "band">Postishead</span>
+			</div>
+
+			<div class = "submenu" id ="submenu9">
+				<span class = "texto">&nbsp;&nbsp;Day: August <span id ="day">1</span></span>
+				<span class = "texto">&nbsp;&nbsp;Time: <span id ="time">19:00</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				<span class = "texto">&nbsp;Stage: <span id ="stage">Heineken</span></span>
+			</div>
+		</div>
+
+		<a id = "up" class = "botaoright" href=#> &#8593; </a>
+		<a id = "down" class = "botaoright" href=#> &#8595; </a>
+		<a id = "select" class = "botaoright" href=#>  > </a>
+		<a id = "return" class = "botaoleft" onmousedown = "press()" onmouseup = "decision('artists.html')" href=#> < </a>
+	</div>
+
+	<img id = "bracer" src="ricardonilas.jpg" alt="lock">
+	<div id = "footer">
+				Copyright &copy; 2015 Ricardo Rei, Luis Nunes, Luis Santos, Leonor Clemente
+	</div>
+	<script type="text/javascript" src="menuJS.js"></script>
+	<script>
+		var band = Number(sessionStorage.band);
+		document.getElementById("band").style.fontSize = "75%";
+		if (band == 1)
+		{
+			document.getElementById("image").src = "deadcombo.jpeg";
+			document.getElementById("band").innerHTML = "Dead Combo";
+			document.getElementById("day").innerHTML = "2";
+		}
+		else if (band == 2) 
+		{
+
+			document.getElementById("image").src = "glassanimals.jpg";
+			document.getElementById("band").innerHTML = "Glass Animal";
+			document.getElementById("time").innerHTML = "21:00";
+		}
+		else if (band == 3)
+		{
+			document.getElementById("band").style.left = "1cm";
+			document.getElementById("image").src = "jessieware.jpeg";
+			document.getElementById("band").innerHTML = "Jessie Ware";
+			document.getElementById("day").innerHTML = "2";
+			document.getElementById("time").innerHTML = "20:30";
+		}
+		else if (band == 4)
+		{	
+			document.getElementById("band").style.top = "0.35cm";
+			document.getElementById("band").style.left = "1.45cm";
+			document.getElementById("image").src = "moby.jpg";
+			document.getElementById("band").innerHTML = "Moby";
+			document.getElementById("time").innerHTML = "22:00";
+		}
+		else if (band == 5)
+		{
+			document.getElementById("band").style.top = "0.35cm";
+			document.getElementById("band").style.left = "1.05cm";
+			document.getElementById("image").src = "morcheeba.jpg";
+			document.getElementById("band").innerHTML = "Morcheeba";
+			document.getElementById("time").innerHTML = "23:00";
+		}
+		else
+		{
+			document.getElementById("band").style.top = "0.35cm";
+			document.getElementById("band").style.left = "1.05cm";
+		}
+	</script>
+</body>
+</html>

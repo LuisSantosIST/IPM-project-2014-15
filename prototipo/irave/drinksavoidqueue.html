@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel = "stylesheet" type = "text/css" href = "layout.css"/>
+		<style>
+		p
+		{
+			font-size: 0.28cm;
+			margin: 0;
+		}
+
+		.image
+		{
+			float: left;
+			padding-left: 0.05cm;
+		}
+		.submenu
+		{
+			width: 2.654cm;
+			height: 1.15cm;
+			font-size: 0.32cm;
+			background-color: white;
+			position: relative;
+		}
+
+		.lotation
+		{
+			width: 1.264cm;
+			height: .7cm;
+
+			float: right;
+			text-align: left;
+		}
+
+		.text
+		{
+			float: left;
+			text-align: right;
+			width: 0.769cm;
+			height: .7cm;
+			padding-left: 0.2cm;
+		}
+
+		.wcname
+		{
+			width: 2.694cm;
+			height: 0.45cm;
+			float: right;
+			text-align: center;
+		}
+
+		.arrow
+		{
+			padding-top: 0.33cm;
+		}
+		</style>
+		<meta charset="utf-8">
+	</head>
+<body onload="startTime(), changeLed()">
+	<div id="titulo">Group 30 iRave Prototype</div>
+
+	<div id = "irave">
+		<div id = "piscaPisca"></div>
+		<div id = "ecran">
+
+			<div id = "header">
+				<div id = "leftcorner">
+					<span>Drinks</span>
+				</div>
+
+				<div id = "horas">
+				</div>
+			</div>
+
+			<div class = "submenu" id ="submenu1" >
+				<div class ="wcname">
+					<img class="image" src="heineken.png" height = "100%">
+					<span><strong>Heineken Bar</strong></span>
+				</div>
+				<div class = "text"><p>Lotation:</p><p class = "minor ">Distance:</p></div>
+				<div class ="arrow" id = "arrow1" style="visibility:hidden;"> > </div>
+				<div class ="lotation"><p><strong id = "lotation1">&nbsp;30%</strong></p>
+					<p class = "minor" id = "distance1">&nbsp;200m</p>
+				</div>
+			</div>
+
+			<div class = "submenu" id ="submenu2">
+				<div class = "wcname">
+					<img class="image" src="redbull.png" height = "100%">
+					<span><strong>RedBull Bar</strong></span>
+				</div>
+				<div class = "text"><p>Lotation:</p><p class = "minor ">Distance:</p></div>
+				<div class ="arrow" id = "arrow2" style="visibility:hidden;"> > </div>
+				<div class ="lotation"><p><strong id ="lotation2">&nbsp;90%</strong><p class = "minor" id = "distance2">&nbsp;117m</p></div>
+			</div>
+		</div>
+
+		<a id = "up" class = "botaoright" onclick="cliqueParaCima()" href=#> &#8593; </a>
+		<a id = "down" class = "botaoright" onclick="cliqueParaBaixo(1)" href=#> &#8595; </a>
+		<a id = "select" class = "botaoright" onclick="selectButton()" href=#>  > </a>
+		<a id = "return" class = "botaoleft" onmousedown = "press()" onmouseup = "decision('findplaces.html')" href=#> < </a>
+	</div>
+
+	<img id = "bracer" src="ricardonilas.jpg" alt="lock">
+	<div id = "footer">
+				Copyright &copy; 2015 Ricardo Rei, Luis Nunes, Luis Santos, Leonor Clemente
+	</div>
+	<script type="text/javascript" src="menuJS.js"></script>
+	<script>
+
+		function selectButton()
+		{
+			sessionStorage.gpsreturn = 2;
+			if (states[count].id == "submenu1")
+			{
+				sessionStorage.returns += 0;
+				window.location.href = "loadingscreen.html";
+			}
+			else if (states[count].id == "submenu2")
+			{
+				sessionStorage.returns += 1;
+				window.location.href = "loadingscreen.html";
+			}
+		}
+	</script>
+</body>
+</html>

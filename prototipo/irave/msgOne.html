@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel = "stylesheet" type = "text/css" href = "layout.css"/>
+		<link rel = "stylesheet" type = "text/css" href = "menusNormais.css"/>
+		<meta charset="utf-8">
+		<style>
+		#submenu1
+		{
+			text-align: center;
+			height: 1.15cm;
+			line-height: 90%;
+		}
+		#arrow1
+		{
+			position: absolute;
+			top: 0.4cm; right: 1.20cm;
+			font-size: 0.6cm;
+			padding-top: 0.34cm;
+		}
+		</style>
+	</head>
+<body onload="startTime(), changeLed()">
+	<div id="titulo">Group 30 iRave Prototype</div>
+
+	<div id = "irave">
+		<div id = "piscaPisca"></div>
+		<div id = "ecran">
+
+			<div id = "header">
+				<div id = "leftcorner">
+					<span>João Dias</span>
+				</div>
+
+				<div id = "horas">
+				</div>
+			</div>
+
+			<div class = "submenu" id ="submenu1" >
+					<span>João is asking for your location!</span>
+					<div class="arrow" id = "arrow1" style="visibility:hidden;"> &#65516; </div>
+			</div>
+			<div class = "submenu" id ="submenu2" >
+					<span>&nbsp;Give Location</span>
+					<div class ="arrow" id = "arrow2" style="visibility:hidden;"> > </div>
+			</div>
+
+			<div class = "submenu" id ="submenu3">
+					<span>&nbsp;Ignore</span> 
+					<div class ="arrow" id = "arrow3" style="visibility:hidden;"> > </div>
+			</div>
+		</div>
+
+		<a id = "up" class = "botaoright" onclick="cliqueParaCima()" href=#> &#8593; </a>
+		<a id = "down" class = "botaoright" onclick="cliqueParaBaixo(2)" href=#> &#8595; </a>
+		<a id = "select" class = "botaoright" onclick="selectButton()" href=#>  > </a>
+		<a id = "return" class = "botaoleft" onmousedown = "press()" onmouseup = "decision('inbox.html')" href=#> < </a>
+	</div>
+
+	<img id = "bracer" src="ricardonilas.jpg" alt="lock">
+	<div id = "footer">
+				Copyright &copy; 2015 Ricardo Rei, Luis Nunes, Luis Santos, Leonor Clemente
+	</div>
+	<script type="text/javascript" src="menuJS.js"></script>
+	<script>
+		function selectButton()
+		{
+			sessionStorage.returning = 0;
+			if (states[count].id == "submenu2")
+			{
+				sessionStorage.returns += 1;
+				window.location.href ="accept.html";
+			}
+			else if (states[count].id == "submenu3")
+			{
+				sessionStorage.returning = 1;
+				window.location.href = "inbox.html";
+			}
+		}
+	</script>
+</body>
+</html>

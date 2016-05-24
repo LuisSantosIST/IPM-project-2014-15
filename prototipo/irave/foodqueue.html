@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel = "stylesheet" type = "text/css" href = "layout.css"/>
+		<style>
+		p
+		{
+			font-size: 0.28cm;
+			margin: 0;
+		}
+
+		.ScrollStyle
+		{
+			height: 2.3cm;
+  	  		overflow-x: hidden;
+		}
+		
+		::-webkit-scrollbar{
+			width: 0.1cm;
+		}
+		
+		::-webkit-scrollbar-track
+		{
+			background: white;
+		}
+		
+		::-webkit-scrollbar-thumb
+		{
+			background: #B8B8B8;
+			border-radius: 4px;
+		}
+		
+		::-webkit-scrollbar-button:end:increment  {
+			height: 0.03cm;
+		}
+
+		.image
+		{
+			float: left;
+			padding-left: 0.05cm;
+		}
+
+		.submenu
+		{
+			width: 2.654cm;
+			height: 1.15cm;
+			font-size: 0.32cm;
+			background-color: white;
+			position: relative;
+		}
+
+		.lotation
+		{
+			width: 1.264cm;
+			height: .7cm;
+
+			float: right;
+			text-align: left;
+		}
+
+		.text
+		{
+			float: left;
+			text-align: right;
+			width: 0.769cm;
+			height: .7cm;
+			padding-left: 0.2cm;
+
+		}
+
+		.wcname
+		{
+			width: 2.694cm;
+			height: 0.45cm;
+			float: right;
+			text-align: center;
+		}
+
+		.arrow
+		{
+			padding-top: 0.33cm;
+			padding-right: 0.1cm;
+		}
+		</style>
+		<meta charset="utf-8">
+	</head>
+<body onload="startTime(), changeLed()">
+	<div id="titulo">Group 30 iRave Prototype</div>
+
+	<div id = "irave">
+		<div id = "piscaPisca"></div>
+		<div id = "ecran">
+
+			<div id = "header">
+				<div id = "leftcorner">
+					<span>Food</span>
+				</div>
+
+				<div id = "horas">
+				</div>
+			</div>
+
+			<div class="ScrollStyle" id ="container">
+			<div class = "submenu" id ="submenu1" >
+				<div class ="wcname">
+					<img class="image" src="hotdog.png" height = "100%">
+					<span class= "titles"><strong id = "name1">Hot Dogs Car</strong></span>
+				</div>
+				<div class = "text"><p>Lotation:</p><p class = "minor ">Distance:</p></div>
+				<div class ="arrow" id = "arrow1" style="visibility:hidden;"> > </div>
+				<div class ="lotation"><p><strong id = "lotation1">&nbsp;60%</strong></p><p class = "minor" id = "distance1">&nbsp;120m</p></div>
+			</div>
+
+			<div class = "submenu" id ="submenu2">
+				<div class = "wcname">
+					<img class="image" src="burguerking.png" height = "100%">
+					<span class= "titles"><strong id = "name2">Burguer King</strong></span>
+				</div>
+				<div class = "text"><p>Lotation:</p><p class = "minor ">Distance:</p></div>
+				<div class ="arrow" id = "arrow2" style="visibility:hidden;"> > </div>
+				<div class ="lotation"><p><strong id ="lotation2">&nbsp;90%</strong><p class = "minor" id = "distance2">&nbsp;117m</p></div>
+			</div>
+
+			<div class = "submenu" id ="submenu3" >
+				<div class ="wcname">
+					<img class="image" src="macdonalds.png" height = "100%">
+					<span class= "titles"><strong id = "name3">Mac Donalds</strong></span>
+				</div>
+				<div class = "text"><p>Lotation:</p><p class = "minor ">Distance:</p></div>
+				<div class ="arrow" id = "arrow3" style="visibility:hidden;"> > </div>
+				<div class ="lotation"><p><strong id = "lotation3">&nbsp;110%</strong></p><p class = "minor" id = "distance3">&nbsp;118m</p></div>
+			</div>
+
+			<div class = "submenu" id ="submenu4">
+				<div class = "wcname">
+					<img class="image" src="food.svg" height = "100%">
+					<span class= "titles"><strong id = "name4">H3 Burguers</strong></span>
+				</div>
+				<div class = "text"><p>Lotation:</p><p class = "minor ">Distance:</p></div>
+				<div class ="arrow" id = "arrow4" style="visibility:hidden;"> > </div>
+				<div class ="lotation"><p><strong id ="lotation4">&nbsp;120%</strong><p class = "minor" id = "distance4">&nbsp;120m</p></div>
+			</div>
+			</div>
+		</div>
+
+		<a id = "up" class = "botaoright" onclick="cliqueCima()" href=#> &#8593; </a>
+		<a id = "down" class = "botaoright" onclick="cliqueBaixo(3)" href=#> &#8595; </a>
+		<a id = "select" class = "botaoright" onclick="selectButton()" href=#>  > </a>
+		<a id = "return" class = "botaoleft" onmousedown = "press()" onmouseup = "decision('findplaces.html')" href=#> < </a>
+	</div>
+
+	<img id = "bracer" src="ricardonilas.jpg" alt="lock">
+	<div id = "footer">
+				Copyright &copy; 2015 Ricardo Rei, Luis Nunes, Luis Santos, Leonor Clemente
+	</div>
+	<script>
+		var states = [document.getElementById("submenu1"), document.getElementById("submenu2"), 
+				document.getElementById("submenu3"), document.getElementById("submenu4")];
+
+		var arrows = [document.getElementById("arrow1"), document.getElementById("arrow2"), 
+				document.getElementById("arrow3"), document.getElementById("arrow4")];
+
+		var count = 0;
+		var start, end;
+
+		if(Number(sessionStorage.returning) == 1 && sessionStorage.returns != "")
+		{
+			count = Number(sessionStorage.returns[sessionStorage.returns.length - 1]);
+			sessionStorage.returns = sessionStorage.returns.substring(0, sessionStorage.returns.length-1);
+			sessionStorage.returning = 0;
+			//window.alert(sessionStorage.returns);
+		}
+
+		states[count].style.backgroundColor = "rgba(50,168,221, 0.8)";
+		arrows[count].style.visibility = "Visible";
+		states[count].style.color = "white";
+		states[count].style.borderColor = "black";
+
+		if (count == 2)
+		{
+			document.getElementById("container").scrollTop += 44;
+		}
+		else if (count == 3)
+		{
+			document.getElementById("container").scrollTop += 88;
+		}
+
+		function selectButton()
+		{
+			sessionStorage.gpsreturn = 3;
+			
+			if (states[count].id == "submenu1")
+			{
+				sessionStorage.returns += 0;
+				window.location.href = "loadingscreen.html";
+			}
+			else if (states[count].id == "submenu2")
+			{
+				sessionStorage.returns += 1;
+				window.location.href = "loadingscreen.html";
+			}
+			else if (states[count].id == "submenu3")
+			{
+				sessionStorage.returns += 2;
+				window.location.href = "loadingscreen.html";
+			}
+			else if (states[count].id == "submenu4")
+			{
+				sessionStorage.returns += 3;
+				window.location.href = "loadingscreen.html";
+			}
+		}
+
+		function cliqueBaixo(nr)
+		{
+			var height = 44;
+			if (count < nr)
+			{
+
+				states[count].style.backgroundColor = "white";
+				states[count].style.color = "black";
+				arrows[count].style.visibility = "Hidden";
+
+				count++;
+				if (count == 2 || count == 3)
+				{
+					document.getElementById("container").scrollTop += height;
+				}
+
+				states[count].style.color = "white";
+				states[count].style.borderColor = "black";
+				states[count].style.backgroundColor = "rgba(50,168,221, 0.8)";
+				arrows[count].style.visibility = "Visible";
+
+			}
+		}
+
+		function cliqueCima()
+		{
+			if (count > 0)
+			{
+				states[count].style.backgroundColor = "white";
+				states[count].style.color = "black";
+				arrows[count].style.visibility = "Hidden";
+
+				count--;
+				if (count == 1)
+				{
+					document.getElementById("container").scrollTop = 44;
+				}
+				else if(count == 0)
+				{
+					document.getElementById("container").scrollTop = 0;
+				}
+				states[count].style.backgroundColor = "rgba(50,168,221, 0.8)";
+				states[count].style.color = "white";
+				states[count].style.borderColor = "black";
+				arrows[count].style.visibility = "Visible";
+			}
+		}
+
+
+		function startTime() {
+			var today = new Date();
+			var h = today.getHours();
+			var m = today.getMinutes();
+			
+			m = checkTime(m);
+
+			document.getElementById("horas").innerHTML = h+":"+m;
+			var t = setTimeout(function(){startTime()},500);
+		}
+
+		function checkTime(i) {
+			if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
+			return i;
+		}
+
+		function press()
+		{
+			start = new Date();
+		}
+			
+		function decision(menu)
+		{
+			sessionStorage.returning = 1;
+			end = new Date();
+			var diff = end - start;
+
+			if(diff > 750)
+			{
+				sessionStorage.returning = 0;
+				sessionStorage.returns = "";
+				window.location.href = "MenuPrincipal.html";
+			}		
+			else
+			{
+				window.location.href = menu;
+			}
+		}
+		
+		function changeLed()
+		{
+			if(sessionStorage.inbox > 0)
+			{
+				setTimeout(function(){changeLed1()},300);
+			}
+					
+		}
+
+		function changeLed1()
+		{
+			document.getElementById("piscaPisca").style.backgroundColor = "red";
+			setTimeout(function(){changeLed2()},500);
+		}
+
+		function changeLed2()
+		{
+			document.getElementById("piscaPisca").style.backgroundColor = "black";
+			setTimeout(function(){changeLed1()},500);
+		}
+	</script>
+</body>
+</html>

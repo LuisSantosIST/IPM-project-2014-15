@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel = "stylesheet" type = "text/css" href = "layout.css"/>
+		<link rel = "stylesheet" type = "text/css" href = "menusNormais.css"/>
+		<meta charset="utf-8">
+	</head>
+<body onload="startTime(), changeLed()">
+	<div id="titulo">Group 30 iRave Prototype</div>
+
+	<div id = "irave">
+		<div id = "piscaPisca"></div>
+		<div id = "ecran">
+
+			<div id = "header">
+				<div id = "leftcorner">
+					<span>Inbox</span>
+				</div>
+
+				<div id = "horas">
+				</div>
+			</div>
+
+			<div class = "submenu" id ="submenu1" >
+					<img class="image" id="image1" src="open.png" height = "90%">
+					<span id = "shit1">&nbsp;João Dias<span class = "note" id = "notifications1"></span></span>
+					<div class ="arrow" id = "arrow1" style="visibility:hidden;"> > </div>
+			</div>
+			<div class = "submenu" id ="submenu2" >
+					<img class="image" id="image2" src="open.png" height = "90%">
+					<span id = "shit2">&nbsp;Organization</span>
+					<div class ="arrow" id = "arrow2" style="visibility:hidden;"> > </div>
+			</div>
+
+			<div class = "submenu" id ="submenu3">
+					<img class="image" id="image3" src="garbage.png" height = "100%">
+					<span id = "shit3">Clean Inbox</span> 
+					<div class ="arrow" id = "arrow3" style="visibility:hidden;"> > </div>
+			</div>
+
+			<div class = "submenu" id ="submenu4">
+					<img class="image" id="image4" src="open.png" height = "90%"  style="visibility:hidden;">
+					<span id = "shit4"  style="visibility:hidden;">&nbsp;Leonor C.</span>
+					<div class ="arrow" id = "arrow4" style="visibility:hidden;"> > </div>
+			</div>
+		</div>
+
+		<a id = "up" class = "botaoright" onclick="cliqueParaCima()" href=#> &#8593; </a>
+		<a id = "down" class = "botaoright" onclick="cliquePaBaixo()" href=#> &#8595; </a>
+		<a id = "select" class = "botaoright" onclick="selectButton()" href=#>  > </a>
+		<a id = "return" class = "botaoleft" onmousedown = "press()" onmouseup = "decision('MenuPrincipal.html')" href=#> < </a>
+	</div>
+
+	<img id = "bracer" src="ricardonilas.jpg" alt="lock">
+	<div id = "footer">
+				Copyright &copy; 2015 Ricardo Rei, Luis Nunes, Luis Santos, Leonor Clemente
+	</div>
+	<script>
+		var states = [document.getElementById("submenu1"), document.getElementById("submenu2"), 
+						document.getElementById("submenu3"), document.getElementById("submenu4")];
+
+		var arrows = [document.getElementById("arrow1"), document.getElementById("arrow2"), 
+						document.getElementById("arrow3"), document.getElementById("arrow4")];
+						
+		var images = [document.getElementById("image1"), document.getElementById("image2"), 
+						document.getElementById("image3"), document.getElementById("image4")];
+				
+		var shitVec = [document.getElementById("shit1"), document.getElementById("shit2"), 
+						document.getElementById("shit3"), document.getElementById("shit4")];
+
+		var count = 0;
+		var lastPos = 0;
+		
+		if(sessionStorage.newNot == 0)
+		{
+			lastPos = 2;
+		}
+		else
+		{
+			lastPos = 3;
+		}
+
+		var start, end;
+		
+				
+		var vec = ["&nbsp;João Dias", "&nbsp;Organization", "&nbsp;Leonor C."];
+
+		var inbox = Number(sessionStorage.inbox);
+		var clearIn = Number(sessionStorage.clearIn);
+		var newNot = Number(sessionStorage.newNot);
+
+		if (Number(sessionStorage.newNot) != 0)
+		{
+			document.getElementById("shit4").innerHTML = "Clean Inbox";
+			document.getElementById("image4").src = "garbage.png";
+			document.getElementById("image4").style.visibility = "Visible";
+			document.getElementById("shit4").style.visibility = "Visible";
+			document.getElementById("image4").style.height= "100%";
+			
+			if (inbox == 1)
+			{
+				if(Number(sessionStorage.joao) == 0)
+				{
+					document.getElementById("shit3").innerHTML = "&nbsp;Leonor C.";
+				}
+				else if(Number(sessionStorage.organization) == 0)
+				{
+					document.getElementById("shit1").innerHTML = "&nbsp;Organization";
+					document.getElementById("shit2").innerHTML = "&nbsp;João Dias";
+					document.getElementById("shit3").innerHTML = "&nbsp;Leonor C.";
+				}
+				else
+				{
+					document.getElementById("shit1").innerHTML = "&nbsp;Leonor C.";
+					document.getElementById("shit2").innerHTML = "&nbsp;João Dias";
+					document.getElementById("shit3").innerHTML = "&nbsp;Organization";
+				}
+				
+			}
+			
+			else if(inbox == 2)
+			{
+				if(Number(sessionStorage.joao) == 0)
+				{
+					if(Number(sessionStorage.organization) == 0)
+					{
+						document.getElementById("shit3").innerHTML = "&nbsp;Leonor C.";
+					}
+					else
+					{
+						document.getElementById("shit2").innerHTML = "&nbsp;Leonor C.";
+						document.getElementById("shit3").innerHTML = "&nbsp;Organization";
+					}
+				}
+				else
+				{
+					document.getElementById("shit1").innerHTML = "&nbsp;Organization";
+					document.getElementById("shit2").innerHTML = "&nbsp;Leonor C.";
+					document.getElementById("shit3").innerHTML = "&nbsp;João Dias";
+				}
+			}
+			
+			else
+			{
+				document.getElementById("shit3").innerHTML = "&nbsp;Leonor C.";
+			}
+			document.getElementById("image3").src = "open.png";
+			document.getElementById("image3").style.height= "90%";
+		}
+		
+		else if (Number(sessionStorage.joao) == 1 && inbox != 0 && newNot == 0)
+		{
+			document.getElementById("shit1").innerHTML = "&nbsp;Organization";
+			document.getElementById("shit2").innerHTML = "&nbsp;João Dias";
+		}
+		
+		if(Number(sessionStorage.returning) == 1 && sessionStorage.returns != "")
+		{
+			var countAux = Number(sessionStorage.returns[sessionStorage.returns.length - 1]);
+			sessionStorage.returns = sessionStorage.returns.substring(0, sessionStorage.returns.length-1);
+			
+			for(var j = 0; j <= lastPos-1; j++)
+			{
+				if(shitVec[j].innerHTML == vec[countAux])
+				{
+					count = j;
+				}
+			}
+		}
+		
+		for (var i = 0; i < inbox; i++) 
+		{
+			images[i].src = "closed.png";
+		}
+		
+		function selectButton()
+		{
+			var joao1 = sessionStorage.joao;
+			var org1 = sessionStorage.organization;
+			var nw1 = sessionStorage.newNot;
+		
+			if (count < inbox)
+			{
+				inbox--;
+				sessionStorage.inbox = inbox;
+			}
+
+			sessionStorage.returning = 0;
+
+
+			if (states[count].id == "submenu1")
+			{
+				sessionStorage.returns += 0;
+				if (joao1 == 0)
+				{
+					sessionStorage.returns += 0;
+					sessionStorage.joao = 1;
+					window.location.href = "msgOne.html";
+				}
+				else if(org1 == 0)
+				{
+					sessionStorage.returns += 1;
+					sessionStorage.organization = 1;
+					window.location.href = "msgTwo.html";
+				}
+				else if(nw1 == 1)
+				{
+					sessionStorage.newNot = 2;
+					sessionStorage.returns += 2;
+					window.location.href = "msgThree.html";
+				}
+				else
+				{
+					sessionStorage.returns += 0;
+					window.location.href = "msgOne.html";
+				}
+			}
+			
+			else if (states[count].id == "submenu2")
+			{
+				sessionStorage.returns += 1;
+				
+				if(joao1 == 0)
+				{
+					if (org1 == 0)
+					{
+						sessionStorage.returns += 1;
+						sessionStorage.organization = 1;
+						window.location.href = "msgTwo.html";
+					}
+					else if(nw1 == 1)
+					{
+						sessionStorage.returns += 2;
+						sessionStorage.newNot = 2;
+						window.location.href = "msgThree.html";
+					}
+					else
+					{
+						sessionStorage.returns += 1;
+						window.location.href = "msgTwo.html";
+					}
+				}
+				
+				else
+				{
+					if(nw1 != 0)
+					{
+						if (org1 != nw1-1)
+						{
+							sessionStorage.returns += 0;
+							window.location.href = "msgOne.html";
+						}
+						else
+						{
+							if(org1 == 0)
+							{
+								sessionStorage.returns += 2;
+								sessionStorage.newNot = 2;
+								window.location.href = "msgThree.html";
+							}
+							else
+							{
+								sessionStorage.returns += 1;
+								window.location.href = "msgTwo.html";
+							}
+						}
+					}
+					else
+					{
+						if (Number(sessionStorage.joao) == 1 && Number(sessionStorage.organization)==0)
+						{
+							sessionStorage.returns += 0;
+							window.location.href = "msgOne.html";
+						}
+						else
+						{
+							sessionStorage.returns += 1;
+							sessionStorage.organization = 1;
+							window.location.href = "msgTwo.html";
+						}
+					}
+				}	
+			}
+			
+			else if (states[count].id == "submenu3")
+			{
+				if(Number(sessionStorage.newNot) == 0)
+				{
+					sessionStorage.returns += 2;
+					window.location.href = "clearInboxmsg.html";
+				}
+				else
+				{
+					if(joao1 == 0)
+					{
+						if (org1 == 0)
+						{
+							if(nw1 == 1)
+							{
+								sessionStorage.newNot = 2;
+							}
+							sessionStorage.returns += 2;
+							window.location.href = "msgThree.html";
+						}
+						else
+						{
+							if(nw1 == 1)
+							{
+								sessionStorage.returns += 1;
+								window.location.href = "msgTwo.html";
+							}
+							else
+							{
+								sessionStorage.returns += 2;
+								window.location.href = "msgThree.html";
+							}
+						}
+					}
+					else
+					{
+						if(nw1 == 1 && org1 == 0)
+						{
+							sessionStorage.returns += 0;
+							window.location.href = "msgOne.html";
+						}
+						else if(nw1 == 1 && org1 == 1)
+						{
+							sessionStorage.returns += 1;
+							window.location.href = "msgTwo.html";
+						}
+						else
+						{
+							if(nw1 == 1)
+							{
+								sessionStorage.newNot = 2;
+							}
+							sessionStorage.returns += 2;
+							window.location.href = "msgThree.html";
+						}
+					}
+				}
+			}
+			else
+			{
+				sessionStorage.returns += 3;
+				window.location.href = "clearInboxmsg.html";
+			}
+		}
+		
+		function cliquePaBaixo()
+		{
+			cliqueParaBaixo(lastPos);
+		}
+		
+		states[count].style.backgroundColor = "rgba(50,168,221, 0.8)";
+		arrows[count].style.visibility = "Visible";
+		states[count].style.color = "white";
+		states[count].style.borderColor = "black";
+
+		function cliqueParaBaixo(nr)
+		{
+			if (count < nr)
+			{
+
+				states[count].style.backgroundColor = "white";
+				states[count].style.color = "black";
+				arrows[count].style.visibility = "Hidden";
+
+				count++;
+				states[count].style.color = "white";
+				states[count].style.borderColor = "black";
+				states[count].style.backgroundColor = "rgba(50,168,221, 0.8)";
+				arrows[count].style.visibility = "Visible";
+			}
+		}
+
+		function cliqueParaCima()
+		{
+			if (count > 0)
+			{
+				states[count].style.backgroundColor = "white";
+				states[count].style.color = "black";
+				arrows[count].style.visibility = "Hidden";
+
+				count--;
+				states[count].style.backgroundColor = "rgba(50,168,221, 0.8)";
+				states[count].style.color = "white";
+				states[count].style.borderColor = "black";
+				arrows[count].style.visibility = "Visible";
+			}
+		}
+
+		function startTime() {
+			var today = new Date();
+			var h = today.getHours();
+			var m = today.getMinutes();
+			
+			m = checkTime(m);
+
+			document.getElementById("horas").innerHTML = h+":"+m;
+			var t = setTimeout(function(){startTime()},500);
+		}
+		function checkTime(i) {
+			if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
+			return i;
+		}
+
+		function press()
+			{
+				start = new Date();
+			}
+			
+		function decision(menu)
+		{
+			sessionStorage.returning = 1;
+			end = new Date();
+			var diff = end - start;
+
+			if(diff > 750)
+			{
+				sessionStorage.returning = 0;
+				sessionStorage.returns = "";
+				window.location.href = "MenuPrincipal.html";
+			}
+			else
+			{
+				window.location.href = menu;
+			}
+		}
+		
+		function changeLed()
+		{
+			if(sessionStorage.inbox > 0)
+			{
+				setTimeout(function(){changeLed1()},300);
+			}
+					
+		}
+
+		function changeLed1()
+		{
+			document.getElementById("piscaPisca").style.backgroundColor = "#FFFF00";
+			setTimeout(function(){changeLed2()},500);
+		}
+
+		function changeLed2()
+		{
+			document.getElementById("piscaPisca").style.backgroundColor = "black";
+			setTimeout(function(){changeLed1()},500);
+		}
+		{
+			if(sessionStorage.inbox > 0)
+			{
+				setTimeout(function(){changeLed1()},300);
+			}
+					
+		}
+
+		function changeLed1()
+		{
+			document.getElementById("piscaPisca").style.backgroundColor = "#FFFF00";
+			setTimeout(function(){changeLed2()},500);
+		}
+
+		function changeLed2()
+		{
+			document.getElementById("piscaPisca").style.backgroundColor = "black";
+			setTimeout(function(){changeLed1()},500);
+		}
+
+	</script>
+</body>
+</html>
